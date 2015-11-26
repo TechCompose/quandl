@@ -1,0 +1,36 @@
+<% if @quandl_datas.present? %>
+  <table class='table'>
+    <thead>
+      <th>ID</th>
+      <th>DATASET CODE</th>
+      <th>NAME</th>
+      <th>DESCRIPTION</th>
+      <th>REFRESHED AT</th>
+      <th>NEWEST AVAILABLE DATE</th>
+      <th>OLDEST AVAILABLE DATE</th>
+      <th>FREQUENCY</th>
+      <th>TYPE</th>
+      <th>PREMIUM</th>
+      <th>DATABASE ID</th>
+    </thead>
+    <% @quandl_datas.values.each do |data| %>
+      <tr>
+        <td><%= data.id %></td>
+        <td><%= data.dataset_code %></td>
+        <td><%= data.name %></td>
+        <td>
+          <span title='<%= data.description %>'><%= truncate(data.description, escape: false) %></span>
+        </td>
+        <td><%= data.refreshed_at %></td>
+        <td><%= data.newest_available_date %></td>
+        <td><%= data.oldest_available_date %></td>
+        <td><%= data.frequency %></td>
+        <td><%= data.type %></td>
+        <td><%= data.premium %></td>
+        <td><%= data.database_id %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <%= @error.inspect %>
+<% end %>
